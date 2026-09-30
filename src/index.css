@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --navy: #0e2340;
+    --navy-deep: #0a1a30;
+    --navy-soft: #192d44;
+    --red: #a4141f;
+    --red-bright: #c01a28;
+    --gold: #c9a227;
+    --gold-soft: #d5b66f;
+    --paper: #f7f5f0;
+    --ink: #12263f;
+
+    --background: 40 23% 95%;
+    --foreground: 216 57% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 216 57% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 216 57% 15%;
+    --primary: 216 57% 15%;
+    --primary-foreground: 40 23% 95%;
+    --secondary: 44 45% 55%;
+    --secondary-foreground: 216 57% 15%;
+    --muted: 40 10% 90%;
+    --muted-foreground: 216 20% 40%;
+    --accent: 44 65% 47%;
+    --accent-foreground: 216 57% 15%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 216 25% 85%;
+    --input: 216 25% 85%;
+    --ring: 44 65% 47%;
+    --radius: 0.25rem;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: 'Archivo', -apple-system, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .font-display {
+    font-family: 'Fraunces', Georgia, serif;
+  }
+  ::selection {
+    background: var(--red-bright);
+    color: #fff;
+  }
+}
+
+@layer components {
+  .tag-pill {
+    @apply inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em];
+  }
+  .btn-pill {
+    @apply inline-flex items-center justify-center gap-3 rounded-full border px-8 py-3.5 text-[12px] font-semibold uppercase tracking-[0.18em] transition-all duration-300;
+  }
+  .btn-pill-light {
+    @apply border-white/70 text-white hover:bg-white hover:text-[#0e2340];
+  }
+  .btn-pill-red {
+    @apply border-[#a4141f] bg-[#a4141f] text-white hover:bg-[#c01a28] hover:border-[#c01a28];
+  }
+  .btn-pill-navy {
+    @apply border-[#0e2340] text-[#0e2340] hover:bg-[#0e2340] hover:text-white;
+  }
+  .section-number {
+    @apply font-display text-sm tracking-[0.35em] text-[#a4141f];
+  }
+}
+
+/* Draw-on-load animation for the hero bridge artwork */
+@keyframes drawline {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.draw-on-load {
+  animation: drawline 2.4s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+.draw-on-load-slow {
+  animation: drawline 3.4s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+@keyframes fadeup {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-up {
+  animation: fadeup 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Ken Burns drift for hero scenes */
+@keyframes kenburns {
+  from {
+    transform: scale(1.06) translate(0, 0);
+  }
+  to {
+    transform: scale(1.16) translate(-1.5%, -1.5%);
+  }
+}
+.kenburns {
+  animation: kenburns 6.5s ease-out forwards;
+}
+
+/* Scene progress bar */
+@keyframes progress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+.progress-bar {
+  animation: progress 5s linear forwards;
+}
+
+/* Trade-lane marquee */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 36s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kenburns,
+  .marquee-track,
+  .progress-bar {
+    animation: none;
+  }
+}
